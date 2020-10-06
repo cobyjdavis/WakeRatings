@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA493F4C252D2FC20091C14F /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA493F4B252D2FC20091C14F /* Home.swift */; };
+		EA493F55252D30330091C14F /* Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA493F54252D30330091C14F /* Department.swift */; };
+		EA493F5A252D30760091C14F /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA493F59252D30760091C14F /* Search.swift */; };
+		EA493F61252D30C70091C14F /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA493F60252D30C70091C14F /* SearchBar.swift */; };
+		EA493F73252D31820091C14F /* DepartmentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA493F72252D31820091C14F /* DepartmentCard.swift */; };
+		EA493F78252D31E30091C14F /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA493F77252D31E30091C14F /* ReviewCell.swift */; };
+		EA493F7D252D32120091C14F /* CreateReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA493F7C252D32120091C14F /* CreateReview.swift */; };
+		EA493F82252D322D0091C14F /* Rater.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA493F81252D322D0091C14F /* Rater.swift */; };
+		EA493F88252D327A0091C14F /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA493F87252D327A0091C14F /* MultilineTextField.swift */; };
+		EA493F90252D32A00091C14F /* RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA493F8F252D32A00091C14F /* RoundedCorners.swift */; };
 		EA6070FF251EF95700FA8423 /* LobsterTwo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA6070FE251EF95700FA8423 /* LobsterTwo-Regular.ttf */; };
 		EA607104251EF96100FA8423 /* LobsterTwo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA607103251EF96100FA8423 /* LobsterTwo-Bold.ttf */; };
 		EA607109251EF97A00FA8423 /* BerkshireSwash-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA607108251EF97A00FA8423 /* BerkshireSwash-Regular.ttf */; };
@@ -41,6 +51,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EA493F4B252D2FC20091C14F /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		EA493F54252D30330091C14F /* Department.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Department.swift; sourceTree = "<group>"; };
+		EA493F59252D30760091C14F /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		EA493F60252D30C70091C14F /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		EA493F72252D31820091C14F /* DepartmentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentCard.swift; sourceTree = "<group>"; };
+		EA493F77252D31E30091C14F /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
+		EA493F7C252D32120091C14F /* CreateReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReview.swift; sourceTree = "<group>"; };
+		EA493F81252D322D0091C14F /* Rater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rater.swift; sourceTree = "<group>"; };
+		EA493F87252D327A0091C14F /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
+		EA493F8F252D32A00091C14F /* RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
 		EA6070FE251EF95700FA8423 /* LobsterTwo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LobsterTwo-Regular.ttf"; sourceTree = "<group>"; };
 		EA607103251EF96100FA8423 /* LobsterTwo-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LobsterTwo-Bold.ttf"; sourceTree = "<group>"; };
 		EA607108251EF97A00FA8423 /* BerkshireSwash-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BerkshireSwash-Regular.ttf"; sourceTree = "<group>"; };
@@ -88,6 +108,62 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA493F49252D2FA70091C14F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EA493F4A252D2FB50091C14F /* Home */,
+				EA493F6E252D31000091C14F /* Review */,
+				EA493F5F252D30960091C14F /* Search */,
+				EA493F86252D325A0091C14F /* Custom */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EA493F4A252D2FB50091C14F /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				EA493F4B252D2FC20091C14F /* Home.swift */,
+				EA493F72252D31820091C14F /* DepartmentCard.swift */,
+				EA493F77252D31E30091C14F /* ReviewCell.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		EA493F53252D30030091C14F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EA493F54252D30330091C14F /* Department.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EA493F5F252D30960091C14F /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				EA493F59252D30760091C14F /* Search.swift */,
+				EA493F60252D30C70091C14F /* SearchBar.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		EA493F6E252D31000091C14F /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				EA493F7C252D32120091C14F /* CreateReview.swift */,
+				EA493F81252D322D0091C14F /* Rater.swift */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
+		EA493F86252D325A0091C14F /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				EA493F87252D327A0091C14F /* MultilineTextField.swift */,
+				EA493F8F252D32A00091C14F /* RoundedCorners.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
 		EAD0A2AC251B20A100A848CC = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +187,8 @@
 		EAD0A2B7251B20A200A848CC /* WakeRatings */ = {
 			isa = PBXGroup;
 			children = (
+				EA493F53252D30030091C14F /* Model */,
+				EA493F49252D2FA70091C14F /* View */,
 				EAD0A303251C000900A848CC /* Fonts */,
 				EAD0A2B8251B20A200A848CC /* WakeRatingsApp.swift */,
 				EAD0A2BA251B20A200A848CC /* ContentView.swift */,
@@ -299,8 +377,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA493F82252D322D0091C14F /* Rater.swift in Sources */,
 				EAD0A2BB251B20A200A848CC /* ContentView.swift in Sources */,
+				EA493F7D252D32120091C14F /* CreateReview.swift in Sources */,
+				EA493F4C252D2FC20091C14F /* Home.swift in Sources */,
+				EA493F90252D32A00091C14F /* RoundedCorners.swift in Sources */,
+				EA493F5A252D30760091C14F /* Search.swift in Sources */,
 				EAD0A2B9251B20A200A848CC /* WakeRatingsApp.swift in Sources */,
+				EA493F73252D31820091C14F /* DepartmentCard.swift in Sources */,
+				EA493F78252D31E30091C14F /* ReviewCell.swift in Sources */,
+				EA493F55252D30330091C14F /* Department.swift in Sources */,
+				EA493F61252D30C70091C14F /* SearchBar.swift in Sources */,
+				EA493F88252D327A0091C14F /* MultilineTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
