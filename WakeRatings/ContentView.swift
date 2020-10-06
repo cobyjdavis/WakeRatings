@@ -27,7 +27,7 @@ var departmentData = [
     Department(id: "bio", color1: Color.blue, color2: Color.green, courseName: "Biology", image: "bio", imageWidth: 210, imageHeight: 180),
     Department(id: "cs", color1: Color.black, color2: Color.white, courseName: "Computer Science", image: "cs", imageWidth: 230, imageHeight: 180),
     Department(id: "sports", color1: Color.yellow, color2: Color.red, courseName: "Sports", image: "sports", imageWidth: 230, imageHeight: 180),
-    Department(id: "pit", color1: Color(#colorLiteral(red: 1, green: 0, blue: 0.5710257888, alpha: 1)), color2: Color(#colorLiteral(red: 1, green: 0.7604560256, blue: 0, alpha: 1)), courseName: "The Pit", image: "food", imageWidth: 230, imageHeight: 140)
+    Department(id: "pit", color1: Color(#colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)), color2: Color(#colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)), courseName: "The Pit", image: "food", imageWidth: 230, imageHeight: 140)
 ]
 
 struct ReviewPage: View {
