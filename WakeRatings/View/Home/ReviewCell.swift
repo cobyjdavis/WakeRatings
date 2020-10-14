@@ -19,10 +19,12 @@ struct ReviewCell: View {
     var dislikeCount: Int
     
     func starColor(rating: Int) -> Color {
-        if rating < 3 {
+        if rating == 1 {
             return Color.red
         } else if rating > 3 {
             return Color.green
+        } else if rating == 2 {
+            return Color.orange
         } else {
             return Color.yellow
         }

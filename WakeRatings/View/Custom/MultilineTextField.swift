@@ -18,7 +18,7 @@ func makeUIView(context: UIViewRepresentableContext<multilineTextField>) -> UITe
     let text = UITextView()
     text.isEditable = true
     text.isUserInteractionEnabled = true
-    text.text = "Write your review..."
+    text.text = ""
     text.textColor = .gray
     text.font = .systemFont(ofSize: 20)
     text.delegate = context.coordinator

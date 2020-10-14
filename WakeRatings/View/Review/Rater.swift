@@ -121,8 +121,73 @@ struct Rater : View {
     }
 }
 
-//struct Rater_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Rater()
-//    }
-//}
+struct Rater2: View {
+    
+    @Binding var rating : Int
+    
+    func foregroundColor(rating: Int) -> Color {
+        if rating == 1 {
+            return Color.red
+        } else if rating > 3 {
+            return Color.green
+        } else if rating == 2 {
+            return Color.orange
+        } else {
+            return Color.yellow
+        }
+    }
+    
+    var body : some View {
+        
+        VStack(spacing: 0) {
+        
+            // Custom picker that delegates the number of stars assigned
+            HStack(spacing: 15) {
+                ForEach(1...5, id: \.self) {i in
+                    Image(systemName: self.rating == 0 ? "star" : "star.fill")
+                        .resizable()
+                        .frame(width: 35, height: 35)
+                        .foregroundColor(i <= self.rating ? foregroundColor(rating: rating) : Color.black.opacity(0.2))
+                        .onTapGesture {
+                            
+                            self.rating = i
+                    }
+                }
+                Spacer()
+                
+                if self.rating != 0 {
+                    
+                    if self.rating == 5 {
+                        
+                        Text("Excellent").fontWeight(.bold).foregroundColor(foregroundColor(rating: rating))
+                        
+                    } else if self.rating == 4 {
+                        
+                        Text("Good").fontWeight(.bold).foregroundColor(foregroundColor(rating: rating))
+                        
+                    } else if self.rating == 3 {
+                        
+                        Text("Average").fontWeight(.bold).foregroundColor(foregroundColor(rating: rating))
+                        
+                    } else if self.rating == 2 {
+                        
+                        Text("Okay").fontWeight(.bold).foregroundColor(foregroundColor(rating: rating))
+                        
+                    } else {
+                        
+                        Text("Poor").fontWeight(.bold).foregroundColor(foregroundColor(rating: rating))
+                        
+                    }
+                }
+            }.padding(.trailing)
+            
+            //Text("\(rating) stars").font(Font.custom("RockoFLF-Bold", size: 35)).foregroundColor(.black)
+        }.animation(.easeOut)
+    }
+}
+
+struct Rater_Previews: PreviewProvider {
+    static var previews: some View {
+        Rater2(rating: .constant(4))
+    }
+}
