@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Home: View {
     
+    @StateObject var homeViewModel = HomeViewModel()
     @State var createReviewOpen = false
     
     var body: some View {
@@ -18,6 +19,7 @@ struct Home: View {
                 
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(alignment: .leading, spacing: 0) {
+                        
                         // Top Heeader - Menu and Search Icon
                         HStack {
                             Button(action: {}, label: {
@@ -62,9 +64,11 @@ struct Home: View {
                         
                         // Reviews
                         VStack {
-                            ReviewCell(image: "profImg", name: "Dr. Canas", rating: 5, review: "The best professor you can have! Everyone gets an A+. My average test score was 57 but Dr. Canas still gave me an A.", date: "Feb 12, 2020", likeCount: "370", dislikeCount: "2")
-                            ReviewCell(image: "profImg", name: "Professor Who", rating: 2, review: "ABSOLUTE WORST EVER! I highly recommend not taking this guy. I don't understand how he is still employed.", date: "Nov 3, 2019", likeCount: "45", dislikeCount: "119")
-                            ReviewCell(image: "profImg", name: "First Last", rating: 3, review: "Generic review comment! Average rating.", date: "July 25, 2015", likeCount: "0", dislikeCount: "0")
+                            ForEach(self.homeViewModel.recentReviews, id: \.id) { review in
+                                ReviewCell(image: "profImg", name: review.professorName, rating: review.rating, review: review.review, timestamp: review.timestamp, likeCount: review.likeCount, dislikeCount: review.dislikeCount)
+//                                ReviewCell(image: "profImg", name: "Professor Who", rating: 2, review: "ABSOLUTE WORST EVER! I highly recommend not taking this guy. I don't understand how he is still employed.", date: "Nov 3, 2019", likeCount: "45", dislikeCount: "119")
+//                                ReviewCell(image: "profImg", name: "First Last", rating: 3, review: "Generic review comment! Average rating.", date: "July 25, 2015", likeCount: "0", dislikeCount: "0")
+                            }
                             
                         }.padding(.bottom, 35)
                     }
@@ -77,7 +81,7 @@ struct Home: View {
                     }
                 
             }.fullScreenCover(isPresented: $createReviewOpen) {
-                CreateReview()
+                CreateReview(createReviewOpen: $createReviewOpen)
             }
             .edgesIgnoringSafeArea(.bottom).navigationBarTitle("").navigationBarHidden(true).accentColor(.black)
         }

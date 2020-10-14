@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct ReviewCell: View {
     
@@ -13,9 +14,9 @@ struct ReviewCell: View {
     var name: String
     var rating: Int
     var review: String
-    var date: String
-    var likeCount: String
-    var dislikeCount: String
+    var timestamp: String
+    var likeCount: Int
+    var dislikeCount: Int
     
     func starColor(rating: Int) -> Color {
         if rating < 3 {
@@ -51,19 +52,19 @@ struct ReviewCell: View {
             // Review information - Date submitted and Popularity
             HStack {
                 // Date
-                Text(date).font(Font.custom("RockoFLF-Bold", size: 14)).foregroundColor(.gray)
+                Text(timestamp).font(Font.custom("RockoFLF-Bold", size: 14)).foregroundColor(.gray)
                 Spacer()
                 // Like Button
                 Button(action: {}, label: {
                     Image(systemName: "hand.thumbsup.fill").foregroundColor(.gray).font(Font.callout.bold())
                 })
-                Text(likeCount).foregroundColor(.black).font(Font.custom("RockoFLF-Bold", size: 14))
+                Text("\(likeCount)").foregroundColor(.black).font(Font.custom("RockoFLF-Bold", size: 14))
                 
                 // Dislike Button
                 Button(action: {}, label: {
                     Image(systemName: "hand.thumbsdown.fill").foregroundColor(.gray).font(Font.callout.bold())
                 })
-                Text(dislikeCount).foregroundColor(.black).font(Font.custom("RockoFLF-Bold", size: 14))
+                Text("\(dislikeCount)").foregroundColor(.black).font(Font.custom("RockoFLF-Bold", size: 14))
             }.padding(.top, 5)
         }.padding(.horizontal).padding(.top)
     }
