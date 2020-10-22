@@ -7,168 +7,6 @@
 
 import SwiftUI
 
-struct CreateReview3: View {
-
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @StateObject var createReviewViewModel = CreateReviewViewModel()
-    @Binding var createReviewOpen: Bool
-    @State private var review = "Write your review"
-    @State private var emptyReviewError = false
-    @State var ratings = 0
-    @State var showingRater = false
-    @State var submitted = false
-    @State var maxWidth = UIScreen.main.bounds.width - 100
-    @State var offset: CGFloat = 0
-
-    let currentDateTime = Date()
-    let formatter = DateFormatter()
-
-    var body: some View {
-        VStack(spacing: 0) {
-            HStack {
-                Text("Create a Review").font(Font.custom("RockoFLF-Bold", size: 38))
-                Spacer()
-                Button(action: {self.createReviewOpen = false}, label: {
-                    Image(systemName: "xmark").foregroundColor(.white).font(Font.body.bold()).padding().background(Color.red.opacity(0.9)).clipShape(Circle())
-                })
-            }.padding(.bottom)
-
-            // Choose a person, place or thing to rate
-            HStack {
-                Text("1. What are you rating?").font(Font.custom("RockoFLF-Bold", size: 27))
-                Image("who").resizable().frame(width: 40, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                Spacer()
-            }.padding(.bottom)
-
-            HStack {
-                Text("2. Give a rating").font(Font.custom("RockoFLF-Bold", size: 27))
-                Image("review").resizable().frame(width: 140, height: 100, alignment: .center)
-                Spacer()
-            }
-
-            // Feedback Display
-            if self.showingRater {
-                Rater(ratings: $ratings, showingRater: $showingRater, sumbitted: $submitted)
-                    .padding(.top, 10)
-                    .animation(.spring())
-            } else {
-
-                Button(action: {
-                    self.showingRater.toggle()
-                }) {
-
-                    HStack(spacing: 3) {
-                        Text(submitted ? "You Rated Dr. Canas: \(self.ratings)" : "Add More Stars: 0")
-                            .foregroundColor(.white)
-                            .font(Font.custom("RockoFLF-Bold", size: 16))
-
-                        Image(systemName: "star.fill").foregroundColor(.yellow)
-                            //.shadow(radius: 3)
-                    }.padding()
-                    .background(Color.black)
-                        .font(.headline)
-                        .clipShape(Capsule())
-                        .shadow(radius: 5)
-                }.padding(.top, 10)
-            }
-
-            HStack {
-                Text("3. Add further thoughts").font(Font.custom("RockoFLF-Bold", size: 27))
-                Spacer()
-            }.padding(.top, 5)
-
-            multilineTextField(txt: $review)
-                .onTapGesture {
-                    self.hideKeyboard()
-                }
-
-            Spacer()
-
-            HStack {
-                
-                Button(action: {
-                    
-                    // Get current time and date
-                    self.formatter.dateStyle = .medium
-                    self.formatter.timeStyle = .short
-                    
-                    self.createReviewViewModel.createReview(timestamp: self.formatter.string(from: self.currentDateTime), type: "PROF", professorId: "01512", professorName: "Dr. Canas", courseId: "40295", courseName: "CSC 321", review: review, rating: ratings, likeCount: 0, dislikeCount: 0)
-                    
-                    self.createReviewOpen = false
-                }, label: {
-                    Text("Post Review").font(Font.custom("RockoFLF-Bold", size: 20)).foregroundColor(.white).padding(20).background(Color.black).clipShape(Capsule())
-                })
-            }
-        }.padding().navigationBarTitle("", displayMode: .inline).navigationBarHidden(true).accentColor(.black)
-    }
-    
-    func calculateWidth()-> CGFloat {
-        let percent = offset / maxWidth
-        return percent * maxWidth
-    }
-    
-    func onChanged(value: DragGesture.Value) {
-        if value.translation.width > 0 && offset <= maxWidth - 65 {
-            offset = value.translation.width
-        }
-        
-    }
-    
-    func onEnd(value: DragGesture.Value) {
-        withAnimation(Animation.easeOut(duration: 0.3)) {
-            if offset > 180 {
-                offset = maxWidth - 65
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
-                    NotificationCenter.default.post(name: NSNotification.Name("Success"), object: nil)
-                }
-            } else {
-                offset = 0
-            }
-        }
-    }
-}
-
-struct CreateReview2: View {
-    
-    @State var searching = false
-    @State var rating = 0
-    @State var review = "Write your review"
-    
-    var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            VStack(spacing: 0) {
-                // Header
-                HStack {
-                    Text("Create a Review").font(Font.custom("RockoFLF-Bold", size: 38)).foregroundColor(.black)
-                    Spacer()
-                    Button(action: {}, label: {
-                        Image(systemName: "xmark").foregroundColor(.white).font(Font.title3.bold()).padding(12).background(Color.red.opacity(0.9)).clipShape(Circle())
-                    })
-                }.padding(.bottom)
-                
-                // Choose course or professor to rate and give rating
-                HStack(alignment: .top) {
-                    VStack {
-                        Button(action: {}, label: {
-                            Image("who").resizable().frame(width: 100, height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                        })
-                        //Text("Dr. Professor").font(Font.custom("RockoFLF-Bold", size: 14)).foregroundColor(.black)
-                    }
-                    
-                    VStack(alignment: .leading) {
-                        Rater2(rating: $rating)
-                        multilineTextField(txt: $review)
-                    }
-                    
-                    Spacer()
-                }.padding(.bottom)
-                Spacer()
-            }.padding()
-        }
-    }
-}
-
 struct CreateReview: View {
     
     @StateObject var createReviewViewModel = CreateReviewViewModel()
@@ -204,7 +42,7 @@ struct CreateReview: View {
                 VStack {
                     
                     // Name of chosen course or professor
-                    CreateReviewHeader(sectionName: "Review Title (Click icon to select)")
+                    CreateReviewHeader(sectionName: "Review For...(Click icon to select)")
                     
                     HStack {
                         if !reviewSubject {
@@ -212,7 +50,7 @@ struct CreateReview: View {
                                 Button(action: { chooseSubject() }, label: {
                                     Image("who").resizable().frame(width: 80, height: 80, alignment: .center)
                                 })
-                                Text("Choose a course, professor, etc...").font(Font.custom("RockoFLF-Bold", size: 25)).foregroundColor(.black).fontWeight(.bold).lineLimit(2).frame(height: 80)
+                                Text("Choose a course, professor, place etc...").font(Font.custom("RockoFLF-Bold", size: 25)).foregroundColor(.black).fontWeight(.bold).lineLimit(2).frame(height: 80)
                             }
                         } else {
                             Text("Dr. Professor").font(Font.custom("RockoFLF-Bold", size: 44)).foregroundColor(.black).fontWeight(.bold)
@@ -223,7 +61,7 @@ struct CreateReview: View {
                     Divider()
                     
                     // Give a rating
-                    CreateReviewHeader(sectionName: "What's your Rate?")
+                    CreateReviewHeader(sectionName: "What's your rating?")
                     
                     Rater2(rating: $rating)
                     

@@ -32,10 +32,15 @@
 		EA493FD82537A4180091C14F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA493FD72537A4180091C14F /* Extensions.swift */; };
 		EA493FE02537AAF70091C14F /* HalfModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA493FDF2537AAF70091C14F /* HalfModal.swift */; };
 		EA493FE52537ABC20091C14F /* modaltest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA493FE42537ABC20091C14F /* modaltest.swift */; };
+		EA493FEA2537F4160091C14F /* AllData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA493FE92537F4160091C14F /* AllData.swift */; };
+		EA49400D253C86560091C14F /* DataToFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA49400C253C86560091C14F /* DataToFirebase.swift */; };
+		EA494025253D38FE0091C14F /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA494024253D38FE0091C14F /* Course.swift */; };
+		EA49402A253D39B20091C14F /* Professor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA494029253D39B20091C14F /* Professor.swift */; };
 		EA6070FF251EF95700FA8423 /* LobsterTwo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA6070FE251EF95700FA8423 /* LobsterTwo-Regular.ttf */; };
 		EA607104251EF96100FA8423 /* LobsterTwo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA607103251EF96100FA8423 /* LobsterTwo-Bold.ttf */; };
 		EA607109251EF97A00FA8423 /* BerkshireSwash-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA607108251EF97A00FA8423 /* BerkshireSwash-Regular.ttf */; };
 		EA60710E251EFA9F00FA8423 /* AliandoRocky.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA60710D251EFA9F00FA8423 /* AliandoRocky.ttf */; };
+		EA89A3FA25410827005F96D6 /* WRData.json in Resources */ = {isa = PBXBuildFile; fileRef = EA89A3F925410826005F96D6 /* WRData.json */; };
 		EAD0A2B9251B20A200A848CC /* WakeRatingsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD0A2B8251B20A200A848CC /* WakeRatingsApp.swift */; };
 		EAD0A2BB251B20A200A848CC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD0A2BA251B20A200A848CC /* ContentView.swift */; };
 		EAD0A2BD251B20A300A848CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAD0A2BC251B20A300A848CC /* Assets.xcassets */; };
@@ -83,10 +88,15 @@
 		EA493FD72537A4180091C14F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EA493FDF2537AAF70091C14F /* HalfModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModal.swift; sourceTree = "<group>"; };
 		EA493FE42537ABC20091C14F /* modaltest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = modaltest.swift; sourceTree = "<group>"; };
+		EA493FE92537F4160091C14F /* AllData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllData.swift; sourceTree = "<group>"; };
+		EA49400C253C86560091C14F /* DataToFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataToFirebase.swift; sourceTree = "<group>"; };
+		EA494024253D38FE0091C14F /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
+		EA494029253D39B20091C14F /* Professor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Professor.swift; sourceTree = "<group>"; };
 		EA6070FE251EF95700FA8423 /* LobsterTwo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LobsterTwo-Regular.ttf"; sourceTree = "<group>"; };
 		EA607103251EF96100FA8423 /* LobsterTwo-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LobsterTwo-Bold.ttf"; sourceTree = "<group>"; };
 		EA607108251EF97A00FA8423 /* BerkshireSwash-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BerkshireSwash-Regular.ttf"; sourceTree = "<group>"; };
 		EA60710D251EFA9F00FA8423 /* AliandoRocky.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AliandoRocky.ttf; sourceTree = "<group>"; };
+		EA89A3F925410826005F96D6 /* WRData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WRData.json; sourceTree = "<group>"; };
 		EAD0A2B5251B20A200A848CC /* WakeRatings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WakeRatings.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD0A2B8251B20A200A848CC /* WakeRatingsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeRatingsApp.swift; sourceTree = "<group>"; };
 		EAD0A2BA251B20A200A848CC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -165,6 +175,9 @@
 			children = (
 				EA493F54252D30330091C14F /* Department.swift */,
 				EA493FAD2536A19E0091C14F /* Review.swift */,
+				EA493FE92537F4160091C14F /* AllData.swift */,
+				EA494024253D38FE0091C14F /* Course.swift */,
+				EA494029253D39B20091C14F /* Professor.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -209,7 +222,9 @@
 		EA493FD62537A4090091C14F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EA89A3F925410826005F96D6 /* WRData.json */,
 				EA493FD72537A4180091C14F /* Extensions.swift */,
+				EA49400C253C86560091C14F /* DataToFirebase.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -412,6 +427,7 @@
 				EAD0A30A251C292300A848CC /* CALIBRIB.TTF in Resources */,
 				EA6070FF251EF95700FA8423 /* LobsterTwo-Regular.ttf in Resources */,
 				EA607104251EF96100FA8423 /* LobsterTwo-Bold.ttf in Resources */,
+				EA89A3FA25410827005F96D6 /* WRData.json in Resources */,
 				EAD0A2C0251B20A300A848CC /* Preview Assets.xcassets in Resources */,
 				EAD0A305251C291800A848CC /* calibri.ttf in Resources */,
 				EA493F9525369F0D0091C14F /* GoogleService-Info.plist in Resources */,
@@ -451,15 +467,19 @@
 				EA493F90252D32A00091C14F /* RoundedCorners.swift in Sources */,
 				EA493F5A252D30760091C14F /* Search.swift in Sources */,
 				EAD0A2B9251B20A200A848CC /* WakeRatingsApp.swift in Sources */,
+				EA493FEA2537F4160091C14F /* AllData.swift in Sources */,
 				EA493FE02537AAF70091C14F /* HalfModal.swift in Sources */,
+				EA49400D253C86560091C14F /* DataToFirebase.swift in Sources */,
 				EA493FBC2536A78B0091C14F /* CreateReviewViewModel.swift in Sources */,
 				EA493F73252D31820091C14F /* DepartmentCard.swift in Sources */,
 				EA493FAE2536A19E0091C14F /* Review.swift in Sources */,
 				EA493FB42536A2E90091C14F /* HomeViewModel.swift in Sources */,
 				EA493FD82537A4180091C14F /* Extensions.swift in Sources */,
+				EA494025253D38FE0091C14F /* Course.swift in Sources */,
 				EA493FE52537ABC20091C14F /* modaltest.swift in Sources */,
 				EA493F78252D31E30091C14F /* ReviewCell.swift in Sources */,
 				EA493F55252D30330091C14F /* Department.swift in Sources */,
+				EA49402A253D39B20091C14F /* Professor.swift in Sources */,
 				EA493F61252D30C70091C14F /* SearchBar.swift in Sources */,
 				EA493F88252D327A0091C14F /* MultilineTextField.swift in Sources */,
 			);
