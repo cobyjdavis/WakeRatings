@@ -33,8 +33,8 @@ struct ReviewCell: View {
     var body: some View {
         VStack {
             HStack {
-                Image(image).resizable().renderingMode(.original).frame(width: 40, height: 40).clipShape(Circle()).shadow(radius: 10)
-                Text(name).foregroundColor(.black).font(Font.title.bold())
+                Image(image).resizable().renderingMode(.original).frame(width: 40, height: 40).clipShape(Circle())
+                Text(name.replacingOccurrences(of: ("(Primary)"), with: "")).foregroundColor(.black).font(Font.title.bold())
                 Spacer()
                 
                 // Rating(Stars)

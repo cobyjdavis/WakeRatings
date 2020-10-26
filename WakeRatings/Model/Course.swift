@@ -15,6 +15,8 @@ struct Course: Decodable, Hashable {
     var accronym: String
     var courseNum: String
     var hours: String
+    var avgRate: [Int]
+    var type: String
     
     enum CodingKeys: String, CodingKey {
         case courseId
@@ -22,5 +24,7 @@ struct Course: Decodable, Hashable {
         case accronym
         case courseNum
         case hours
+        case avgRate
+        case type
     }
 }

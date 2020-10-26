@@ -64,12 +64,23 @@ struct Home: View {
                         
                         // Reviews
                         VStack {
-                            ForEach(self.homeViewModel.recentReviews, id: \.id) { review in
-                                ReviewCell(image: "profImg", name: review.professorName, rating: review.rating, review: review.review, timestamp: review.timestamp, likeCount: review.likeCount, dislikeCount: review.dislikeCount)
-//                                ReviewCell(image: "profImg", name: "Professor Who", rating: 2, review: "ABSOLUTE WORST EVER! I highly recommend not taking this guy. I don't understand how he is still employed.", date: "Nov 3, 2019", likeCount: "45", dislikeCount: "119")
-//                                ReviewCell(image: "profImg", name: "First Last", rating: 3, review: "Generic review comment! Average rating.", date: "July 25, 2015", likeCount: "0", dislikeCount: "0")
+                            if self.homeViewModel.recentReviews.count == 0 {
+                                HStack {
+                                    Spacer()
+                                    Image("empty").resizable().frame(width: 270, height: 220, alignment: .center).shadow(radius: 1)
+                                    Spacer()
+                                }.padding(.top)
+                                HStack {
+                                    Spacer()
+                                    Text("No recent reviews!").font(.title2).foregroundColor(Color.black.opacity(0.5))
+                                    Spacer()
+                                }
+                                
+                            } else {
+                                ForEach(self.homeViewModel.recentReviews, id: \.id) { review in
+                                    ReviewCell(image: "profImg", name: review.professorName, rating: review.rating, review: review.review, timestamp: review.timestamp, likeCount: review.likeCount, dislikeCount: review.dislikeCount)
+                                }
                             }
-                            
                         }.padding(.bottom, 35)
                     }
                 }.edgesIgnoringSafeArea(.bottom)

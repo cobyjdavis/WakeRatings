@@ -13,11 +13,15 @@ struct Professor: Decodable, Hashable {
     var professorId: String
     var professorName: String
     var courses: [String]
+    var avgRate: [Int]
+    var type: String
     
     enum CodingKeys: String, CodingKey {
         case professorId
         case professorName
         case courses
+        case avgRate
+        case type
     }
 }
 

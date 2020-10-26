@@ -16,13 +16,23 @@ class CreateReviewViewModel: ObservableObject {
         
         let review = Review(timestamp: timestamp, type: type, professorId: professorId, professorName: professorName, courseId: courseId, courseName: courseName, review: review, rating: rating, likeCount: likeCount, dislikeCount: dislikeCount)
         
+        /* Add review to 'Reviews' collection */
         let _ = try! db.collection("Reviews").addDocument(from: review) { (error) in
             if error != nil {
                 print(error!.localizedDescription)
                 return
             }
-            
-            
         }
+        
+        /* Add review to myReviews collection */
+        let _ = try! db.collection("myReviews").document(professorId).collection("reviews").addDocument(from: review) { (error) in
+            if error != nil {
+                print(error!.localizedDescription)
+                return
+            }
+        }
+        
+        /* Update and add rating to average ratings */
+        db.collection("Professors").document(professorId).updateData(["avgRate" : FieldValue.arrayUnion([rating])])
     }
 }
