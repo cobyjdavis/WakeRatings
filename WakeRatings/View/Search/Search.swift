@@ -152,7 +152,7 @@ struct DetailView2: View {
                     }
                     Spacer()
                     Button(action: { self.createReviewOpen = true }, label: {
-                        Text("Review").font(.title3).fontWeight(.semibold).foregroundColor(.white).shadow(radius: 4).padding().padding(.horizontal, 27).background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)), Color(#colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1))]), startPoint: .topLeading, endPoint: .bottomTrailing)).clipShape(Capsule())
+                        Text("Review").font(.title3).fontWeight(.semibold).foregroundColor(.white).shadow(radius: 4).padding().padding(.horizontal, 18).background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)), Color(#colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1))]), startPoint: .topLeading, endPoint: .bottomTrailing)).clipShape(Capsule())
                     })
                 }.padding(.top)
             }.padding().padding(.bottom, 5)

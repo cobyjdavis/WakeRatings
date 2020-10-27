@@ -159,23 +159,23 @@ struct Rater2: View {
                     
                     if self.rating == 5 {
                         
-                        Text("Excellent").fontWeight(.bold).foregroundColor(foregroundColor(rating: rating))
+                        Text("Excellent").fontWeight(.bold).foregroundColor(foregroundColor(rating: rating)).lineLimit(1)
                         
                     } else if self.rating == 4 {
                         
-                        Text("Good").fontWeight(.bold).foregroundColor(foregroundColor(rating: rating))
+                        Text("Good").fontWeight(.bold).foregroundColor(foregroundColor(rating: rating)).lineLimit(1)
                         
                     } else if self.rating == 3 {
                         
-                        Text("Average").fontWeight(.bold).foregroundColor(foregroundColor(rating: rating))
+                        Text("Average").fontWeight(.bold).foregroundColor(foregroundColor(rating: rating)).lineLimit(1)
                         
                     } else if self.rating == 2 {
                         
-                        Text("Okay").fontWeight(.bold).foregroundColor(foregroundColor(rating: rating))
+                        Text("Okay").fontWeight(.bold).foregroundColor(foregroundColor(rating: rating)).lineLimit(1)
                         
                     } else {
                         
-                        Text("Poor").fontWeight(.bold).foregroundColor(foregroundColor(rating: rating))
+                        Text("Poor").fontWeight(.bold).foregroundColor(foregroundColor(rating: rating)).lineLimit(1)
                         
                     }
                 }
