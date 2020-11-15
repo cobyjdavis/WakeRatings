@@ -11,6 +11,9 @@ import FirebaseFirestoreSwift
 class SearchViewModel: ObservableObject {
     
     @Published var data: [Any] = []
+    @Published var professors: [Professor] = []
+    @Published var query = ""
+    @Published var page = 1
     
     let db = Firestore.firestore()
     
@@ -28,7 +31,10 @@ class SearchViewModel: ObservableObject {
             
             for document in snap.documents {
                 guard let course = try! document.data(as: Course.self) else { return }
-                self.data.append(course)
+                
+                DispatchQueue.main.async {
+                    self.data.append(course)
+                }
             }
         }
     }
@@ -42,7 +48,10 @@ class SearchViewModel: ObservableObject {
             
             for document in snap.documents {
                 guard let professor = try! document.data(as: Professor.self) else { return }
-                self.data.append(professor)
+                
+                DispatchQueue.main.async {
+                    self.professors.append(professor)
+                }
             }
         }
     }

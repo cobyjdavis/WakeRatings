@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CreateReview: View {
     
-    @ObservedObject var review = TextLimiter(limit: 370)
+    @ObservedObject var review = TextLimiter(limit: 500)
     @StateObject var createReviewViewModel = CreateReviewViewModel()
     @Binding var createReviewOpen: Bool
     @State var choosingSubject = false
@@ -27,7 +27,7 @@ struct CreateReview: View {
         self.formatter.timeStyle = .short
         
         /* Check all fields are filled before posting */
-        if !review.value.isEmpty && rating != 0 && subject.professorName != "" {
+        if rating != 0 && subject.professorName != "" && !review.hasReachedLimit {
             self.createReviewViewModel.createReview(timestamp: self.formatter.string(from: self.currentDateTime), type: "PROFESSOR", professorId: subject.professorId, professorName: subject.professorName, courseId: subject.courseId, courseName: subject.courseName, review: review.value, rating: rating, likeCount: 0, dislikeCount: 0)
             
             closeReviewCreator() // Close the review creator
@@ -90,12 +90,12 @@ struct CreateReview: View {
                     Divider().padding(.top)
                     
                     // Add comments and further thoughts
-                    CreateReviewHeader(sectionName: "Add comments")
+                    CreateReviewHeader(sectionName: "Add comments (Optional)")
                     
                     VStack {
-                        multilineTextField(txt: $review.value).frame(width: UIScreen.main.bounds.width - 40, height: 300, alignment: .topLeading).padding(5)
+                        TextEditor(text: $review.value).frame(width: UIScreen.main.bounds.width - 40, height: 300, alignment: .topLeading).padding(5)
                         HStack {
-                            Text("\(review.value.count)/370").foregroundColor(.gray).font(.callout)
+                            Text("\(review.value.count)/500").foregroundColor(.gray).font(.callout)
                         }
                     }.overlay(
                         RoundedRectangle(cornerRadius: 20)
@@ -112,6 +112,7 @@ struct CreateReview: View {
                             .clipShape(RoundedCorners(tl: 30, tr: 40, bl: 0, br: 0))
                             .edgesIgnoringSafeArea(.bottom))
         }.background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)), Color(#colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1))]), startPoint: .leading, endPoint: .trailing).edgesIgnoringSafeArea(.all))
+        .dismissKeyboardOnTap()
         .sheet(isPresented: $choosingSubject) {
             ChooseSubjectModal(subject: $subject, choosingSubject: $choosingSubject)
         }
@@ -123,8 +124,8 @@ struct CreateReview: View {
 
 struct CreateReview_Previews2: PreviewProvider {
     static var previews: some View {
-        CreateReview(createReviewOpen: .constant(true))
-        //ChooseSubjectModal(subject: .constant(AllData(professorName: "", professorId: "", courseName: "", courseId: "", accronym: "", courseNum: "", hours: "")), choosingSubject: .constant(true))
+        //CreateReview(createReviewOpen: .constant(true))
+        ChooseSubjectModal(subject: .constant(AllData(professorName: "", professorId: "", courseName: "", courseId: "", accronym: "", courseNum: "", hours: "")), choosingSubject: .constant(true))
     }
 }
 
@@ -151,13 +152,13 @@ struct ChooseSubjectModal: View {
             RoundedRectangle(cornerRadius: 20).fill(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))).frame(width: 45, height: 7, alignment: .center).padding(.vertical)
             
             CustomSearchBar(searchText: $searchText).shadow(radius: 3).padding([.horizontal, .top])
-            
-            if searchText == "" {
-                Text("Search & Choose the suject of your review").font(.largeTitle).fontWeight(.bold).foregroundColor(.black)
-                Image("mobile").resizable().frame(width: 540, height: 500, alignment: .center).padding(.top, 50)
-                Spacer()
-            } else {
-                ScrollView(.vertical, showsIndicators: true, content: {
+            ScrollView(.vertical, showsIndicators: true, content: {
+                if searchText == "" {
+                    Text("Search & choose the suject of your review").font(.largeTitle).fontWeight(.bold).foregroundColor(.black)
+                    Image("mobile").resizable().frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2).padding(.top, 50)
+                    Spacer()
+                } else {
+                    
                     VStack {
                         ForEach(allData.filter{$0.professorName.lowercased().contains(self.searchText.lowercased())
                             //||$0.courseName.lowercased().contains(self.searchText.lowercased())
@@ -176,11 +177,13 @@ struct ChooseSubjectModal: View {
                                 self.choosingSubject = false
                             }
                         }
+                        
                     }.padding()
-                }).gesture(DragGesture().onChanged { _ in
-                    UIApplication.shared.endEditing(true)
-                })
-            }
+                }
+            }).gesture(DragGesture().onChanged { _ in
+                UIApplication.shared.endEditing(true)
+            })
+            
         }.background(Color("BGColor").edgesIgnoringSafeArea(.all))
     }
 }

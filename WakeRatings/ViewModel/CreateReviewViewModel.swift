@@ -14,10 +14,12 @@ class CreateReviewViewModel: ObservableObject {
     
     func createReview(timestamp: String, type: String, professorId: String, professorName: String, courseId: String, courseName: String, review: String, rating: Int, likeCount: Int, dislikeCount: Int) {
         
-        let review = Review(timestamp: timestamp, type: type, professorId: professorId, professorName: professorName, courseId: courseId, courseName: courseName, review: review, rating: rating, likeCount: likeCount, dislikeCount: dislikeCount)
+        let reviewId = ref.collection("Reviews").document().documentID // Generate a document ID
+        
+        let review = Review(id: reviewId, timestamp: timestamp, type: type, professorId: professorId, professorName: professorName, courseId: courseId, courseName: courseName, review: review, rating: rating, likeCount: likeCount, dislikeCount: dislikeCount)
         
         /* Add review to 'Reviews' collection */
-        let _ = try! db.collection("Reviews").addDocument(from: review) { (error) in
+        let _ = try! db.collection("Reviews").document(reviewId).setData(from: review) { (error) in
             if error != nil {
                 print(error!.localizedDescription)
                 return
@@ -25,7 +27,7 @@ class CreateReviewViewModel: ObservableObject {
         }
         
         /* Add review to myReviews collection */
-        let _ = try! db.collection("myReviews").document(professorId).collection("reviews").addDocument(from: review) { (error) in
+        let _ = try! db.collection("myReviews").document(professorId).collection("reviews").document(reviewId).setData(from: review) { (error) in
             if error != nil {
                 print(error!.localizedDescription)
                 return

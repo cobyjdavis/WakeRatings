@@ -9,7 +9,7 @@ import Firebase
 import FirebaseFirestoreSwift
 
 struct Review: Codable {
-    @DocumentID var id: String?
+    var id: String
     var timestamp: String
     var type: String
     var professorId: String

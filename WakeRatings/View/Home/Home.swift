@@ -78,7 +78,7 @@ struct Home: View {
                                 
                             } else {
                                 ForEach(self.homeViewModel.recentReviews, id: \.id) { review in
-                                    ReviewCell(image: "who", name: review.professorName, rating: review.rating, review: review.review, timestamp: review.timestamp, likeCount: review.likeCount, dislikeCount: review.dislikeCount)
+                                    ReviewCell(image: "who", review: review)
                                 }
                             }
                         }.padding(.bottom, 35)
