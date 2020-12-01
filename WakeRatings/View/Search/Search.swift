@@ -12,34 +12,39 @@ struct Search: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var searchViewModel = SearchViewModel()
     @State private var searchText = ""
+    @State var searching = false
     @State var index = 0
     var allData: [AllData] = load("WRData.json")
     
     var body: some View {
         VStack(spacing: 0) {
             VStack {
-                HStack(alignment: .top, spacing: 10) {
-                    Button(action: { self.presentationMode.wrappedValue.dismiss() }, label: {
-                        Image(systemName: "arrow.backward").foregroundColor(Color(#colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1))).font(Font.largeTitle.weight(.semibold)).padding().background(Color.white).clipShape(Circle()).shadow(radius: 5)
-                    })
-                    Spacer()
-                    Image("mobile").resizable().frame(width: 160, height: 140, alignment: .center).shadow(radius: 5)
-                    
-                }.padding(.bottom, -80)
-                HStack {
-                    Text("Explore!").font(Font.custom("RockoFLF-Bold", size: 30)).foregroundColor(.white).shadow(radius: 5)
-                    Spacer()
-                }.padding(.leading).padding(.bottom, 5)
-                HStack {
-                    Text("Search for your favorite courses, professors, places & more!").font(Font.custom("RockoFLF-Bold", size: 18)).foregroundColor(.white).shadow(radius: 5).padding(.bottom)
-                    Spacer()
-                }.padding(.leading)
+                Group {
+                    if !searching {
+                        HStack(alignment: .top, spacing: 10) {
+                            Button(action: { self.presentationMode.wrappedValue.dismiss() }, label: {
+                                Image(systemName: "arrow.backward").foregroundColor(Color(#colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1))).font(Font.title.weight(.semibold)).padding().background(Color.white).clipShape(Circle()).shadow(radius: 5)
+                            })
+                            Spacer()
+                            Image("mobile").resizable().frame(width: 160, height: 140, alignment: .center).shadow(radius: 5)
+                        }.padding(.bottom, -80)
+                        
+                        HStack {
+                            Text("Explore!").font(Font.custom("RockoFLF-Bold", size: 30)).foregroundColor(.white).shadow(radius: 5)
+                            Spacer()
+                        }.padding(.leading).padding(.bottom, 5)
+                        HStack {
+                            Text("Search for your favorite courses, professors, places & more!").font(Font.custom("RockoFLF-Bold", size: 18)).foregroundColor(.white).shadow(radius: 5).padding(.bottom)
+                            Spacer()
+                        }.padding(.leading)
+                    }
+                }.animation(.default)
                 
-                CustomSearchBar(searchText: $searchText)
+                CustomSearchBar(searchText: $searchText, searching: $searching)
                 
                 GridViewHeader(activeIdx: $index)
             }.padding(.horizontal).padding(.vertical).background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)), Color(#colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1))]), startPoint: .leading, endPoint: .trailing).clipShape(RoundedCorners(tl: 0, tr: 0, bl: 20, br: 20))
-                                                .edgesIgnoringSafeArea(.top))
+                                                                    .edgesIgnoringSafeArea(.top))
             
             VStack {
                 if searchText == "" {
@@ -163,12 +168,12 @@ struct ProfessorDetailView: View {
                 
                 HStack {
                     VStack {
-                        Text("3").font(.system(size: 40, weight: .bold, design: .default)).foregroundColor(.white)
-                        Text("Courses").font(.system(size: 20, weight: .regular, design: .default)).foregroundColor(.white)
+                        Text("\(profileViewModel.courses.count)").font(.system(size: 40, weight: .bold, design: .default)).foregroundColor(.white)
+                        Text(self.profileViewModel.courses.count > 1 ? "Courses" : "Course").font(.system(size: 20, weight: .regular, design: .default)).foregroundColor(.white)
                     }
                     Spacer()
                     VStack {
-                        Text("4.7").font(.system(size: 40, weight: .bold, design: .default)).foregroundColor(.white)
+                        Text(self.profileViewModel.myGrades.count == 0 ? "--" : "\(profileViewModel.professorGrade, specifier: "%.1f")").font(.system(size: 40, weight: .bold, design: .default)).foregroundColor(.white)
                         Text("Grade").font(.system(size: 20, weight: .regular, design: .default)).foregroundColor(.white)
                     }
                     Spacer()
@@ -188,7 +193,9 @@ struct ProfessorDetailView: View {
                     VStack {
                         if profileViewModel.myReviews.count != 0 {
                             ForEach(profileViewModel.myReviews, id: \.id) { review in
-                                ReviewCell(image: "who", review: review)
+                                if review.review != "" {
+                                    ReviewCell(image: "who", review: review)
+                                }
                             }
                         } else {
                             Image("empty").resizable().frame(width: 300, height: 250, alignment: .center).padding(.top, 50)
@@ -202,12 +209,14 @@ struct ProfessorDetailView: View {
             }.background(Color.white
                             .clipShape(RoundedCorners(tl: 40, tr: 40, bl: 0, br: 0))
                             .edgesIgnoringSafeArea(.bottom))
-        }.background(Color.black.opacity(1).edgesIgnoringSafeArea(.top)).navigationBarTitle("").navigationBarHidden(true)
+        }.background(Color.black.opacity(1).edgesIgnoringSafeArea(.top)).navigationBarTitle("", displayMode: .inline).navigationBarHidden(true)
         .fullScreenCover(isPresented: $createReviewOpen) {
             CreateReview(createReviewOpen: $createReviewOpen, subject: data)
         }
         .onAppear {
             profileViewModel.fetchReviews(professorId: data.professorId)
+            profileViewModel.getCourses(professorId: data.professorId)
+            profileViewModel.getGrades(professorId: data.professorId)
         }
     }
 }
@@ -235,25 +244,24 @@ struct CourseDetailView: View {
                 
                 /* Profile Information and Stats */
                 HStack(spacing: 30) {
-                    Image("who").resizable().frame(width: 80, height: 80, alignment: .center)
                     VStack(alignment: .leading) {
-                        Text(data.professorName.replacingOccurrences(of: ("(Primary)"), with: "")).font(.system(size: 25, weight: .semibold, design: .default)).foregroundColor(.white)
+                        Text(data.courseName.replacingOccurrences(of: ("(Primary)"), with: "")).font(.system(size: 25, weight: .semibold, design: .default)).foregroundColor(.white)
                         HStack {
                             Image(systemName: "building.columns.fill").font(Font.callout.bold()).foregroundColor(.white)
                             Text(data.accronym).font(.system(size: 20, weight: .regular, design: .default)).foregroundColor(.white)
                         }
-                    }
+                    }.padding(.horizontal)
                     Spacer()
                 }
                 
                 HStack {
                     VStack {
-                        Text("3").font(.system(size: 40, weight: .bold, design: .default)).foregroundColor(.white)
-                        Text("Courses").font(.system(size: 20, weight: .regular, design: .default)).foregroundColor(.white)
+                        Text("\("1")").font(.system(size: 40, weight: .bold, design: .default)).foregroundColor(.white)
+                        Text("Prrofessors").font(.system(size: 20, weight: .regular, design: .default)).foregroundColor(.white)
                     }
                     Spacer()
                     VStack {
-                        Text("4.7").font(.system(size: 40, weight: .bold, design: .default)).foregroundColor(.white)
+                        Text("--").font(.system(size: 40, weight: .bold, design: .default)).foregroundColor(.white)
                         Text("Grade").font(.system(size: 20, weight: .regular, design: .default)).foregroundColor(.white)
                     }
                     Spacer()

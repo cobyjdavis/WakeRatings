@@ -11,6 +11,7 @@ import FirebaseFirestoreSwift
 class HomeViewModel: ObservableObject {
     
     let db = Firestore.firestore()
+    @Published var allReviews: [Review] = []
     @Published var recentReviews: [Review] = []
     
     init() {
@@ -20,9 +21,15 @@ class HomeViewModel: ObservableObject {
     func fetchReviews() {
         db.collection("Reviews").order(by: "timestamp", descending: true).addSnapshotListener { (snap, error) in
             guard let reviewData = snap else { return }
-            self.recentReviews = reviewData.documents.compactMap({ (document) -> Review? in
+            self.allReviews = reviewData.documents.compactMap({ (document) -> Review? in
                 return try! document.data(as: Review.self)
             })
+        }
+        
+        for review in allReviews {
+            if review.review != "" {
+                recentReviews.append(review)
+            }
         }
     }
 }

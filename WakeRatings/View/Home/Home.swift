@@ -20,7 +20,7 @@ struct Home: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(alignment: .leading, spacing: 0) {
                         
-                        // Top Heeader - Menu and Search Icon
+                        // Top Header - Menu and Search Icon
                         HStack {
                             Button(action: {}, label: {
                                 Image(systemName: "line.horizontal.3").font(Font.title.bold()).padding(20).background(RoundedCorners(tl: 0, tr: 30, bl: 0, br: 30).fill(Color.white)).shadow(radius: 5)
@@ -78,7 +78,9 @@ struct Home: View {
                                 
                             } else {
                                 ForEach(self.homeViewModel.recentReviews, id: \.id) { review in
-                                    ReviewCell(image: "who", review: review)
+                                    if review.review != "" {
+                                        ReviewCell(image: "who", review: review)
+                                    }
                                 }
                             }
                         }.padding(.bottom, 35)

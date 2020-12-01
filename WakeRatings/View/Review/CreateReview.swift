@@ -47,7 +47,7 @@ struct CreateReview: View {
     var body: some View {
         VStack(spacing: 5) {
             HStack {
-                Text("Create a Review").font(Font.custom("RockoFLF-Bold", size: 28)).foregroundColor(.white).shadow(radius: 5)
+                Text("Rate & Review").font(Font.custom("RockoFLF-Bold", size: 28)).foregroundColor(.white).shadow(radius: 5)
                 Spacer()
                 Button(action: { closeReviewCreator() }, label: {
                     Image(systemName: "xmark").foregroundColor(.white).font(Font.title.bold()).shadow(radius: 5)
@@ -145,13 +145,14 @@ struct ChooseSubjectModal: View {
     
     @Binding var subject: AllData
     @Binding var choosingSubject: Bool
+    @State var searching = false
     @State var searchText = ""
     
     var body: some View {
         VStack(spacing: 0) {
             RoundedRectangle(cornerRadius: 20).fill(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))).frame(width: 45, height: 7, alignment: .center).padding(.vertical)
             
-            CustomSearchBar(searchText: $searchText).shadow(radius: 3).padding([.horizontal, .top])
+            CustomSearchBar(searchText: $searchText, searching: $searching).shadow(radius: 3).padding([.horizontal, .top])
             ScrollView(.vertical, showsIndicators: true, content: {
                 if searchText == "" {
                     Text("Search & choose the suject of your review").font(.largeTitle).fontWeight(.bold).foregroundColor(.black)

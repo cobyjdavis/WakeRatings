@@ -47,6 +47,7 @@
 		EA89A40225425D76005F96D6 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA89A40125425D75005F96D6 /* SearchViewModel.swift */; };
 		EA89A4072543E8E0005F96D6 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA89A4062543E8E0005F96D6 /* CustomSearchBar.swift */; };
 		EA89A40C2544FF24005F96D6 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA89A40B2544FF24005F96D6 /* ProfileViewModel.swift */; };
+		EAA8C52525656DCE001B3911 /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA8C52425656DCE001B3911 /* Grade.swift */; };
 		EAD0A2B9251B20A200A848CC /* WakeRatingsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD0A2B8251B20A200A848CC /* WakeRatingsApp.swift */; };
 		EAD0A2BB251B20A200A848CC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD0A2BA251B20A200A848CC /* ContentView.swift */; };
 		EAD0A2BD251B20A300A848CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAD0A2BC251B20A300A848CC /* Assets.xcassets */; };
@@ -109,6 +110,7 @@
 		EA89A40125425D75005F96D6 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		EA89A4062543E8E0005F96D6 /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		EA89A40B2544FF24005F96D6 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		EAA8C52425656DCE001B3911 /* Grade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grade.swift; sourceTree = "<group>"; };
 		EAD0A2B5251B20A200A848CC /* WakeRatings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WakeRatings.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD0A2B8251B20A200A848CC /* WakeRatingsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeRatingsApp.swift; sourceTree = "<group>"; };
 		EAD0A2BA251B20A200A848CC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				EA493FE92537F4160091C14F /* AllData.swift */,
 				EA494024253D38FE0091C14F /* Course.swift */,
 				EA494029253D39B20091C14F /* Professor.swift */,
+				EAA8C52425656DCE001B3911 /* Grade.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -488,6 +491,7 @@
 				EA136039254914C20034383C /* ReviewViewModel.swift in Sources */,
 				EAD0A2B9251B20A200A848CC /* WakeRatingsApp.swift in Sources */,
 				EA493FEA2537F4160091C14F /* AllData.swift in Sources */,
+				EAA8C52525656DCE001B3911 /* Grade.swift in Sources */,
 				EA1360452550CB040034383C /* UnderlineTab.swift in Sources */,
 				EA493FE02537AAF70091C14F /* HalfModal.swift in Sources */,
 				EA49400D253C86560091C14F /* DataToFirebase.swift in Sources */,

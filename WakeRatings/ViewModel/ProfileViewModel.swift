@@ -11,29 +11,99 @@ import FirebaseFirestoreSwift
 class ProfileViewModel: ObservableObject {
     
     let db = Firestore.firestore()
+    
+    @Published var allReviews: [Review] = []
     @Published var myReviews: [Review] = []
-    @Published var grades: [Int] = []
-    @Published var avgRating: Int = 0
+    
+    var courses: [Course] = []
+    var myCourseIDs: [String] = []
+    
+    @Published var myGrades: [Grade] = []
+    @Published var professorGrade: Float = 0.0
+    var sum: Float = 0.0
     
     func fetchReviews(professorId: String) {
         db.collection("myReviews").document(professorId).collection("reviews").addSnapshotListener { (snap, error) in
             guard let reviewData = snap else { return }
-            self.myReviews = reviewData.documents.compactMap({ (document) -> Review? in
+            self.allReviews = reviewData.documents.compactMap({ (document) -> Review? in
                 return try! document.data(as: Review.self)
             })
         }
-    }
-    
-    func calcuateGrade()-> Int {
-        for review in myReviews {
-            self.grades.append(review.rating)
-        }
         
-        if grades.count != 0 {
-            for grade in grades {
-                avgRating += grade
+        for review in allReviews {
+            if review.review != "" {
+                myReviews.append(review)
             }
         }
-        return avgRating
+    }
+    
+    func getCourses(professorId: String) {
+        db.collection("Professors").document(professorId).getDocument { (document, error) in
+            if let document = document, document.exists {
+                
+                // Get the professor's data -- we specifically want the course IDs
+                let professor = try! document.data(as: Professor.self)
+                
+                // Add the professor's course IDs to an array
+                for course in professor!.courses {
+                    self.myCourseIDs.append(course)
+                    
+                    // Add the courses to an array
+                    self.fetchCourses(courseId: course)
+                }
+            } else {
+                print("Error: Professor does not exist!")
+            }
+        }
+    }
+    
+    func fetchCourses(courseId: String) {
+        db.collection("Courses").document(courseId).getDocument { (document, error) in
+            if let document = document, document.exists {
+                let course = try! document.data(as: Course.self)
+                self.courses.append(course!)
+            } else {
+                print("Error: Course does not exist!")
+            }
+        }
+    }
+    
+//    func getGrade(professorId: String) {
+//        db.collection("Professors").document(professorId).getDocument { (document, error) in
+//            if let document = document, document.exists {
+//
+//                // Get the professor's data -- we specifically want the course IDs
+//                let professor = try! document.data(as: Professor.self)
+//
+//                if professor?.avgRate.count != 0 {
+//                    // Add the professor's course IDs to an array
+//                    for rating in professor!.avgRate {
+//                        self.sum += Float(rating)
+//                    }
+//
+//                    self.professorGrade = self.sum / Float(professor!.avgRate.count)
+//                }
+//            } else {
+//                print("Error: Professor does not exist!")
+//            }
+//        }
+//    }
+    
+    func getGrades(professorId: String) {
+        db.collection("myGrades").document(professorId).collection("ratings").getDocuments { (snap, error) in
+            guard let grades = snap else { return }
+            self.myGrades = grades.documents.compactMap({ (document) -> Grade? in
+                return try! document.data(as: Grade.self)
+            })
+            
+            if self.myGrades.count != 0 {
+                // Add the professor's course IDs to an array
+                for grade in self.myGrades {
+                    self.sum += Float(grade.rating)
+                }
+                
+                self.professorGrade = self.sum / Float(self.myGrades.count)
+            }
+        }
     }
 }
