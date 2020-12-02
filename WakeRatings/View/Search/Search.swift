@@ -12,7 +12,6 @@ struct Search: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var searchViewModel = SearchViewModel()
     @State private var searchText = ""
-    @State var searching = false
     @State var index = 0
     var allData: [AllData] = load("WRData.json")
     
@@ -20,7 +19,7 @@ struct Search: View {
         VStack(spacing: 0) {
             VStack {
                 Group {
-                    if !searching {
+                    if searchText == "" {
                         HStack(alignment: .top, spacing: 10) {
                             Button(action: { self.presentationMode.wrappedValue.dismiss() }, label: {
                                 Image(systemName: "arrow.backward").foregroundColor(Color(#colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1))).font(Font.title.weight(.semibold)).padding().background(Color.white).clipShape(Circle()).shadow(radius: 5)
@@ -38,13 +37,13 @@ struct Search: View {
                             Spacer()
                         }.padding(.leading)
                     }
-                }.animation(.default)
+                }
                 
-                CustomSearchBar(searchText: $searchText, searching: $searching)
+                CustomSearchBar(searchText: $searchText)
                 
                 GridViewHeader(activeIdx: $index)
             }.padding(.horizontal).padding(.vertical).background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)), Color(#colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1))]), startPoint: .leading, endPoint: .trailing).clipShape(RoundedCorners(tl: 0, tr: 0, bl: 20, br: 20))
-                                                                    .edgesIgnoringSafeArea(.top))
+                                                                    .edgesIgnoringSafeArea(.top)).animation(.interpolatingSpring(stiffness: 300, damping: 30, initialVelocity: 10))
             
             VStack {
                 if searchText == "" {
@@ -173,7 +172,7 @@ struct ProfessorDetailView: View {
                     }
                     Spacer()
                     VStack {
-                        Text(self.profileViewModel.myGrades.count == 0 ? "--" : "\(profileViewModel.professorGrade, specifier: "%.1f")").font(.system(size: 40, weight: .bold, design: .default)).foregroundColor(.white)
+                        Text(self.profileViewModel.myGrades.count == 0 ? "⎻" : "\(profileViewModel.professorGrade, specifier: "%.1f")").font(.system(size: 40, weight: .bold, design: .default)).foregroundColor(.white)
                         Text("Grade").font(.system(size: 20, weight: .regular, design: .default)).foregroundColor(.white)
                     }
                     Spacer()
@@ -256,12 +255,12 @@ struct CourseDetailView: View {
                 
                 HStack {
                     VStack {
-                        Text("\("1")").font(.system(size: 40, weight: .bold, design: .default)).foregroundColor(.white)
-                        Text("Prrofessors").font(.system(size: 20, weight: .regular, design: .default)).foregroundColor(.white)
+                        Text("\("3")").font(.system(size: 40, weight: .bold, design: .default)).foregroundColor(.white)
+                        Text("Sections").font(.system(size: 20, weight: .regular, design: .default)).foregroundColor(.white)
                     }
                     Spacer()
                     VStack {
-                        Text("--").font(.system(size: 40, weight: .bold, design: .default)).foregroundColor(.white)
+                        Text("⎻").font(.system(size: 40, weight: .bold, design: .default)).foregroundColor(.white)
                         Text("Grade").font(.system(size: 20, weight: .regular, design: .default)).foregroundColor(.white)
                     }
                     Spacer()

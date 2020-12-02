@@ -11,10 +11,11 @@ struct Home: View {
     
     @StateObject var homeViewModel = HomeViewModel()
     @State var createReviewOpen = false
+    @State var expand = false
     
     var body: some View {
         NavigationView {
-            ZStack(alignment: .bottomTrailing) {
+            ZStack {
                 Color("BGColor").edgesIgnoringSafeArea(.all)
                 
                 ScrollView(.vertical, showsIndicators: false) {
@@ -22,7 +23,7 @@ struct Home: View {
                         
                         // Top Header - Menu and Search Icon
                         HStack {
-                            Button(action: {}, label: {
+                            Button(action: { self.expand.toggle() }, label: {
                                 Image(systemName: "line.horizontal.3").font(Font.title.bold()).padding(20).background(RoundedCorners(tl: 0, tr: 30, bl: 0, br: 30).fill(Color.white)).shadow(radius: 5)
                             })
                             
@@ -88,16 +89,66 @@ struct Home: View {
                 }.edgesIgnoringSafeArea(.bottom)
                 
                 // Write a review(Make a rating) button
-                Image(systemName: "pencil").resizable().frame(width: 30, height: 30).foregroundColor(.white).padding(24).background(Color.black.opacity(0.7)).cornerRadius(50).padding()
-                    .onTapGesture {
-                        self.createReviewOpen = true
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Image(systemName: "pencil").resizable().frame(width: 30, height: 30).foregroundColor(.white).padding(24).background(Color.black.opacity(0.7)).cornerRadius(50).padding()
+                            .onTapGesture {
+                                self.createReviewOpen = true
+                        }
                     }
+                }
                 
+                if self.expand == true {
+                    Color.black.opacity(0.5).edgesIgnoringSafeArea(.all).onTapGesture {
+                        self.expand = false
+                    }
+                    
+                    VStack {
+                        Text("Menu").foregroundColor(.black).font(.title).fontWeight(.bold)
+                        
+                        Divider().frame(width: 50)
+                        
+                        NavigationLink(
+                            destination: ClassRankings(),
+                            label: {
+                                Text("Top Courses").padding(5)
+                            })
+                            .foregroundColor(.black)
+                            .font(.title2)
+                        
+                        NavigationLink(
+                            destination: TeacherRankings(),
+                            label: {
+                                Text("Top Professors").padding(5)
+                            })
+                            .foregroundColor(.black)
+                            .font(.title2)
+                        
+                        NavigationLink(
+                            destination: AddTeacher(),
+                            label: {
+                                Text("Request").padding(5)
+                            })
+                            .foregroundColor(.black)
+                            .font(.title2)
+                        
+                        NavigationLink(
+                            destination: About(),
+                            label: {
+                                Text("About").padding(5)
+                            })
+                            .foregroundColor(.black)
+                            .font(.title2)
+                            
+                    }.padding( 20).padding(.horizontal, 45).background(Color.white).clipShape(RoundedRectangle(cornerRadius: 20))
+                }
             }.fullScreenCover(isPresented: $createReviewOpen) {
                 CreateReview(createReviewOpen: $createReviewOpen)
             }
             .edgesIgnoringSafeArea(.bottom).navigationBarTitle("").navigationBarHidden(true).accentColor(.black)
-        }
+        }.accentColor(.black)
     }
 }
 

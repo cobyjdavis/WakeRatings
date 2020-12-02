@@ -13,6 +13,7 @@ class HomeViewModel: ObservableObject {
     let db = Firestore.firestore()
     @Published var allReviews: [Review] = []
     @Published var recentReviews: [Review] = []
+    @Published var topReviews: [Review] = []
     
     init() {
         fetchReviews()

@@ -43,6 +43,11 @@
 		EA607104251EF96100FA8423 /* LobsterTwo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA607103251EF96100FA8423 /* LobsterTwo-Bold.ttf */; };
 		EA607109251EF97A00FA8423 /* BerkshireSwash-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA607108251EF97A00FA8423 /* BerkshireSwash-Regular.ttf */; };
 		EA60710E251EFA9F00FA8423 /* AliandoRocky.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA60710D251EFA9F00FA8423 /* AliandoRocky.ttf */; };
+		EA776DBB2577FB42000E4E48 /* About.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA776DB62577FB42000E4E48 /* About.swift */; };
+		EA776DBC2577FB42000E4E48 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA776DB72577FB42000E4E48 /* Contacts.swift */; };
+		EA776DBD2577FB42000E4E48 /* AddTeacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA776DB82577FB42000E4E48 /* AddTeacher.swift */; };
+		EA776DBE2577FB42000E4E48 /* ClassRankings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA776DB92577FB42000E4E48 /* ClassRankings.swift */; };
+		EA776DBF2577FB42000E4E48 /* TeacherRankings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA776DBA2577FB42000E4E48 /* TeacherRankings.swift */; };
 		EA89A3FA25410827005F96D6 /* WRData.json in Resources */ = {isa = PBXBuildFile; fileRef = EA89A3F925410826005F96D6 /* WRData.json */; };
 		EA89A40225425D76005F96D6 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA89A40125425D75005F96D6 /* SearchViewModel.swift */; };
 		EA89A4072543E8E0005F96D6 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA89A4062543E8E0005F96D6 /* CustomSearchBar.swift */; };
@@ -106,6 +111,11 @@
 		EA607103251EF96100FA8423 /* LobsterTwo-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LobsterTwo-Bold.ttf"; sourceTree = "<group>"; };
 		EA607108251EF97A00FA8423 /* BerkshireSwash-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BerkshireSwash-Regular.ttf"; sourceTree = "<group>"; };
 		EA60710D251EFA9F00FA8423 /* AliandoRocky.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AliandoRocky.ttf; sourceTree = "<group>"; };
+		EA776DB62577FB42000E4E48 /* About.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = About.swift; sourceTree = "<group>"; };
+		EA776DB72577FB42000E4E48 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
+		EA776DB82577FB42000E4E48 /* AddTeacher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTeacher.swift; sourceTree = "<group>"; };
+		EA776DB92577FB42000E4E48 /* ClassRankings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassRankings.swift; sourceTree = "<group>"; };
+		EA776DBA2577FB42000E4E48 /* TeacherRankings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherRankings.swift; sourceTree = "<group>"; };
 		EA89A3F925410826005F96D6 /* WRData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WRData.json; sourceTree = "<group>"; };
 		EA89A40125425D75005F96D6 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		EA89A4062543E8E0005F96D6 /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
@@ -250,6 +260,19 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		EA776DB52577FB42000E4E48 /* Extras */ = {
+			isa = PBXGroup;
+			children = (
+				EA776DB62577FB42000E4E48 /* About.swift */,
+				EA776DB72577FB42000E4E48 /* Contacts.swift */,
+				EA776DB82577FB42000E4E48 /* AddTeacher.swift */,
+				EA776DB92577FB42000E4E48 /* ClassRankings.swift */,
+				EA776DBA2577FB42000E4E48 /* TeacherRankings.swift */,
+			);
+			name = Extras;
+			path = ../../../../Downloads/Extras;
+			sourceTree = "<group>";
+		};
 		EAD0A2AC251B20A100A848CC = {
 			isa = PBXGroup;
 			children = (
@@ -274,6 +297,7 @@
 		EAD0A2B7251B20A200A848CC /* WakeRatings */ = {
 			isa = PBXGroup;
 			children = (
+				EA776DB52577FB42000E4E48 /* Extras */,
 				EA493FD62537A4090091C14F /* Resources */,
 				EA493FB22536A2D70091C14F /* ViewModel */,
 				EA493F53252D30030091C14F /* Model */,
@@ -492,20 +516,25 @@
 				EAD0A2B9251B20A200A848CC /* WakeRatingsApp.swift in Sources */,
 				EA493FEA2537F4160091C14F /* AllData.swift in Sources */,
 				EAA8C52525656DCE001B3911 /* Grade.swift in Sources */,
+				EA776DBE2577FB42000E4E48 /* ClassRankings.swift in Sources */,
 				EA1360452550CB040034383C /* UnderlineTab.swift in Sources */,
 				EA493FE02537AAF70091C14F /* HalfModal.swift in Sources */,
 				EA49400D253C86560091C14F /* DataToFirebase.swift in Sources */,
 				EA493FBC2536A78B0091C14F /* CreateReviewViewModel.swift in Sources */,
 				EA493F73252D31820091C14F /* DepartmentCard.swift in Sources */,
+				EA776DBD2577FB42000E4E48 /* AddTeacher.swift in Sources */,
 				EA493FAE2536A19E0091C14F /* Review.swift in Sources */,
 				EA493FB42536A2E90091C14F /* HomeViewModel.swift in Sources */,
+				EA776DBC2577FB42000E4E48 /* Contacts.swift in Sources */,
 				EA89A40C2544FF24005F96D6 /* ProfileViewModel.swift in Sources */,
 				EA89A4072543E8E0005F96D6 /* CustomSearchBar.swift in Sources */,
 				EA89A40225425D76005F96D6 /* SearchViewModel.swift in Sources */,
 				EA493FD82537A4180091C14F /* Extensions.swift in Sources */,
 				EA494025253D38FE0091C14F /* Course.swift in Sources */,
 				EA493FE52537ABC20091C14F /* modaltest.swift in Sources */,
+				EA776DBF2577FB42000E4E48 /* TeacherRankings.swift in Sources */,
 				EA493F78252D31E30091C14F /* ReviewCell.swift in Sources */,
+				EA776DBB2577FB42000E4E48 /* About.swift in Sources */,
 				EA493F55252D30330091C14F /* Department.swift in Sources */,
 				EA49402A253D39B20091C14F /* Professor.swift in Sources */,
 				EA493F61252D30C70091C14F /* SearchBar.swift in Sources */,

@@ -68,27 +68,6 @@ class ProfileViewModel: ObservableObject {
         }
     }
     
-//    func getGrade(professorId: String) {
-//        db.collection("Professors").document(professorId).getDocument { (document, error) in
-//            if let document = document, document.exists {
-//
-//                // Get the professor's data -- we specifically want the course IDs
-//                let professor = try! document.data(as: Professor.self)
-//
-//                if professor?.avgRate.count != 0 {
-//                    // Add the professor's course IDs to an array
-//                    for rating in professor!.avgRate {
-//                        self.sum += Float(rating)
-//                    }
-//
-//                    self.professorGrade = self.sum / Float(professor!.avgRate.count)
-//                }
-//            } else {
-//                print("Error: Professor does not exist!")
-//            }
-//        }
-//    }
-    
     func getGrades(professorId: String) {
         db.collection("myGrades").document(professorId).collection("ratings").getDocuments { (snap, error) in
             guard let grades = snap else { return }
@@ -103,6 +82,9 @@ class ProfileViewModel: ObservableObject {
                 }
                 
                 self.professorGrade = self.sum / Float(self.myGrades.count)
+                
+                /* Update and add rating to average rating */
+                self.db.collection("Professors").document(professorId).updateData(["avgRate" : self.professorGrade])
             }
         }
     }

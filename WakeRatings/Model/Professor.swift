@@ -13,7 +13,7 @@ struct Professor: Decodable, Hashable {
     var professorId: String
     var professorName: String
     var courses: [String]
-    var avgRate: [Int]
+    var avgRate: Float
     var type: String
     
     enum CodingKeys: String, CodingKey {

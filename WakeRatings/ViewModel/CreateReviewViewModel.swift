@@ -37,8 +37,5 @@ class CreateReviewViewModel: ObservableObject {
         /* Add rating to myGrades collection */
         db.collection("myGrades").document(professorId).collection("ratings").document().setData(["rating" : rating])
         
-        
-        /* Update and add rating to average ratings */
-        //db.collection("Professors").document(professorId).updateData(["avgRate" : FieldValue.arrayUnion([rating])])
     }
 }

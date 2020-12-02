@@ -21,7 +21,7 @@ func uploadData() {
                 ["professorName" : data.professorName,
                  "professorId" : data.professorId,
                  "courses" : [data.courseId],
-                 "avgRate" : [], // Empty array and will append all ratings of a professor
+                 "avgRate" : 0.0, // Empty array and will append all ratings of a professor
                  "type" : "PROFESSOR"
                 ])
         }
@@ -36,7 +36,7 @@ func uploadData() {
                 ["professorName" : data.professorName,
                  "professorId" : data.professorId,
                  "courses" : [data.courseId],
-                 "avgRate" : [], // Empty array and will append all ratings of a professor
+                 "avgRate" : 0.0, // Empty array and will append all ratings of a professor
                  "type" : "PROFESSOR"
                 ])
         }
@@ -49,7 +49,7 @@ func uploadData() {
              "courseId" : data.courseId,
              "hours" : data.hours,
              "professorId" : data.professorId,
-             "avgRate" : [], // Empty array and will append all ratings of a course
+             "avgRate" : 0.0, // Empty array and will append all ratings of a course
              "type" : "COURSE"
             ])
     }

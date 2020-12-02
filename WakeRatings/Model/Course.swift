@@ -15,7 +15,7 @@ struct Course: Decodable, Hashable {
     var accronym: String
     var courseNum: String
     var hours: String
-    var avgRate: [Int]
+    var avgRate: Float
     var type: String
     
     enum CodingKeys: String, CodingKey {
